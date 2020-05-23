@@ -1,34 +1,22 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
+/*Fazer um programa para ler o código de uma peça 1, o número de peças 1, o valor unitário de cada peça 1, o
+código de uma peça 2, o número de peças 2 e o valor unitário de cada peça 2. Calcule e mostre o valor a ser pago.
+*/
 
 int main(){
-    int i,j;
-    int cod[]={};
-    int peca[]={};
-    int qtdPecas;
-    int numPecas;
-    float valorPeca[]={};
+    int cod,numPecas;
+    float valorPeca,valorPeca2;
+    int cod2,numPecas2;    
     float valorTotal;
-    printf("Quantas pecas deseja cadastrar?\n");
-    scanf("%d",&qtdPecas);
 
-    for(i=0;i<qtdPecas;i++){
-        printf("Digite o codigo da peca %d:",(i));
-        scanf("%d",&cod[i]);
-        printf("Digite o num de pecas de codigo \"%d\":\n",cod[i]);
-        scanf("%d",&numPecas);
-        for(j=0;j<numPecas;j++){
-            printf("Digite o preco da %d. peca\n",j);
-            scanf("%f",&valorPeca[j]);
-            valorTotal+=valorPeca[j];
-        }
-    }
-   
-    for(i=0;i<qtdPecas;i++){
-        printf("\nVALOR A PAGAR DA PECA DE COD. %d: %.2f",cod[i],valorTotal);
-    }
+    printf("Entre com o codigo, num de pecas, valor da peca\n");
+    scanf("%d %d %f",&cod,&numPecas,&valorPeca);
+    printf("Entre com o codigo, num de pecas, valor da peca\n");
+    scanf("%d %d %f",&cod2,&numPecas2,&valorPeca2);
+    valorTotal=(valorPeca*numPecas)+(valorPeca2*numPecas2);
+    printf("\n VALOR A PAGAR: %.2f", valorTotal);
    
     return 0;
 }
