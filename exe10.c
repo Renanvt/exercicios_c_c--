@@ -16,7 +16,7 @@ int main(){
     }
     if(triangular==true){
         printf("O número natural é triangular \n");
-    }else{
+    }else{j
         printf("O número natural não é triangular \n");
     }
     
