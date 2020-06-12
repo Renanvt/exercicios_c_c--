@@ -12,7 +12,7 @@ void mostraPalavra(char resposta[],int max,char letra[],int count);
 char jogador1[20]="";
 char jogador2[20]="";
 char resposta[20]={};
-char mascara[20]={};
+
 
 int main()
 {   
@@ -28,9 +28,6 @@ void limpaTela(){
 void menu(){
     int opcao=0;         
     int max;            
-    //char jogador1[20]="";
-    //char jogador2[20]="";
-    //char resposta[20]={};
     while(opcao<3){
         printf("1 - Novo jogo\n");
         printf("2 - Sobre\n");
@@ -149,23 +146,8 @@ void verificarLetras(char resposta[],int max){
             //menu();
             break;
         }
-         mostraPalavra(resposta,max,letra,count);
+
     }
     
 }
-void mostraPalavra(char resposta[],int max,char letra[],int count){
-    setlocale(LC_ALL,"Portuguese_Brazil");
-    int i=0;
-    mascara[i]="c";
-    printf("%c",mascara[i]);
-    //for(i=0;i<max;i++){
-      //  mascara[i]="*";
-    //}
-    printf("\n%s\n",mascara);
-     
-    //if(resposta[count]==letra){            
-      //  mascara[count]=letra;
-    //}
-    printf("\n%s\n",mascara);
-    
-}
+
