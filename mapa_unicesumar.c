@@ -2,23 +2,24 @@
 #include <string.h>
 #include <locale.h>         // ---------- Aqui falta a biblioteca necessária para idioma - 0.1 ponto
 #include <stdbool.h>
-int iniciarJogo();
+void novoJogo();
+void iniciarJogo();
 int main()
-{
-    char resposta[20];  
+{ 
     int erros;          
     int acertos;         
     char letra[]={};          
     int i, j;            
-    int max;  
     int opcao;     
     int count=0;   
     int pos=0;  
     bool jogarNovamente=true;
+    char jogador1[20];
+    char jogador2[20];
     setlocale(LC_ALL,"");    // --------- Aqui falta a definiçao de idioma - 0.1 ponto
 
     limpaTela(); 
-   
+    iniciarJogo();
         
 
     erros=0;acertos=0;   
@@ -60,17 +61,20 @@ int main()
             break;
         }
     }
-    printf("1 - Jogar novamente\n");
-    printf("2 - Sair\n");
+    printf("1 - Novo jogo\n");
+    printf("2 - Jogar novamente\n");
+    printf("3 - Sair\n");
     scanf("%d",&opcao);
     switch (opcao)
     {
     case 1:
-        printf("Inicia o jogo");
-        jogarNovamente=true;
+        printf("Novo jogo");
+        printf("Digite o nome do Jogador1: ");
+        scanf("%s",jogador1);
+        iniciarJogo(jogador1);
         break;
     case 2:
-        printf("Sai do jogo");
+        iniciarJogo();
         jogarNovamente=false;
         break;
     default:
@@ -82,10 +86,12 @@ int main()
     
     return (0);
 }
-int iniciaJogo(int *max, char *resposta[]){
+void novoJogo(char jogador1[]){
     int i;
+    int max;
+    char resposta[20];
     printf("************ Jogo da Forca ************\n");        
-    printf("************** Jogador 1 **************\n\n");
+    printf("************** Jogador %s **************\n\n",jogador1);
     printf("Utilize apenas letras minúsculas.\n");
     printf("Máximo de 20 letras\n\n");
 
@@ -96,10 +102,56 @@ int iniciaJogo(int *max, char *resposta[]){
     printf("Digite a palavra secreta: ");
     scanf (" %s", resposta);
     max = strlen (resposta);
-
        
 }
 
+void iniciarJogo(char *resposta[],int *max){
+    int erros=0,acertos=0;
+    bool jogarNovamente;
+    char letra[]={};
+    int pos=0;
+    int count=0;
+    int i,j;   
+    printf("************ Jogo da Forca ************\n");   
+    printf("************** Jogador 2 **************\n\n");
+    printf("Utilize apenas letras minúsculas.\n");
+    printf("Limite de 6 erros. Palavra de até 20 letras\n\n");
+    while(jogarNovamente==true)    // Aqui falta a condição de parada do laço - 0,3 ponto
+    {  
+           printf("Digite uma letra: ");
+            scanf (" %c", &letra[pos]);
+            j = 0;            
+            count=pos;
+            
+                 
+               if (resposta[count] == letra[pos])
+               {
+                   pos++;
+                   acertos++; j++;
+                    printf ("\nAcertos: %d - Erros: %d\n",acertos, erros);             
+               }else{
+                   erros++;
+                   printf ("\nAcertos: %d - Erros: %d\n",acertos, erros);
+                   
+               }
+                   
+           
+         
+        //if (j <= 0)      
+          //      erros++;
+        
+        if(erros==6){
+            printf("Perdeu!\n");
+            break;
+        }
+        if(acertos==max){
+            printf("Ganhou\n");
+            break;
+        }
+    }
+
+
+}
 void limpaTela(){
         system("clear||cls");  
 }
