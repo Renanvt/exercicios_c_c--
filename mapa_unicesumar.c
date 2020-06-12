@@ -8,12 +8,15 @@ void menu();
 void novoJogo(char jogador1[],char jogador2[],char resposta[], int max);
 void iniciarJogo(char jogador2[],char resposta[], int max);
 void verificarLetras(char resposta[],int max);
+void mostraPalavra(char resposta[],int max,char letra[],int count);
 char jogador1[20]="";
 char jogador2[20]="";
 char resposta[20]={};
+char mascara[20]={};
+
 int main()
 {   
-    setlocale(LC_ALL,"");    // --------- Aqui falta a definiçao de idioma - 0.1 ponto
+    setlocale(LC_ALL,"Portuguese_brazil");    // --------- Aqui falta a definiçao de idioma - 0.1 ponto
     limpaTela();
     menu();           
     return (0);
@@ -28,9 +31,9 @@ void menu(){
     //char jogador1[20]="";
     //char jogador2[20]="";
     //char resposta[20]={};
-    while(opcao<4){
+    while(opcao<3){
         printf("1 - Novo jogo\n");
-        printf("2 - Sobre o jogo\n");
+        printf("2 - Sobre\n");
         printf("3 - Sair\n");
         scanf("%d",&opcao);
         switch (opcao)
@@ -48,10 +51,13 @@ void menu(){
             break;
         case 2:
             limpaTela();
-            print("Adaptado por Jonatan Renan");
+            printf("--------------------------\n");
+            printf("Adaptado por Jonatan Renan\n");
             printf("RA: 20054477-5\n");
-            printf("Versão: 1.0");
-            printf("GitHub: ")
+            printf("Versão: 1.0, feito no S.O Linux\n");
+            printf("GitHub: github.com/Renanvt\n");
+            printf("Repositório: https://github.com/Renanvt/exercicios_c_c--/blob/master/mapa_unicesumar.c\n");
+            printf("--------------------------\n\n");
             break;
         }
     }
@@ -89,6 +95,7 @@ void iniciarJogo(char jogador2[],char resposta[],int max){
     verificarLetras(resposta,max);
         
 }
+
 void verificarLetras(char resposta[],int max){
     int erros=0,acertos=0;
     bool jogarNovamente=true;
@@ -97,6 +104,7 @@ void verificarLetras(char resposta[],int max){
     int count=0;
     int j=0;   
     int opcao=0;
+    
      while(jogarNovamente==true)    // Aqui falta a condição de parada do laço - 0,3 ponto
     {  
 
@@ -105,7 +113,7 @@ void verificarLetras(char resposta[],int max){
             j = 0;            
             count=pos;
             
-                 
+               
                if (resposta[count] == letra[pos])
                {    
                    limpaTela();
@@ -141,7 +149,23 @@ void verificarLetras(char resposta[],int max){
             //menu();
             break;
         }
+         mostraPalavra(resposta,max,letra,count);
     }
     
 }
-
+void mostraPalavra(char resposta[],int max,char letra[],int count){
+    setlocale(LC_ALL,"Portuguese_Brazil");
+    int i=0;
+    mascara[i]="c";
+    printf("%c",mascara[i]);
+    //for(i=0;i<max;i++){
+      //  mascara[i]="*";
+    //}
+    printf("\n%s\n",mascara);
+     
+    //if(resposta[count]==letra){            
+      //  mascara[count]=letra;
+    //}
+    printf("\n%s\n",mascara);
+    
+}
