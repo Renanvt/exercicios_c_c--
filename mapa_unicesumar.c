@@ -90,7 +90,6 @@ void iniciarJogo(char jogador2[],char resposta[],int max){
     printf("Limite de 6 erros. Palavra de até 20 letras\n\n");
 
     verificarLetras(resposta,max);
-        
 }
 
 void verificarLetras(char resposta[],int max){
@@ -143,7 +142,7 @@ void verificarLetras(char resposta[],int max){
                                
         if(acertos==max){
             printf("Ganhou\n");
-            //menu();
+            menu();
             break;
         }
 

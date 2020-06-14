@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-char RA[] = "0200544775";
+char RA[] = "0200544775";//Meu RA em um vetor de char
 bool verificarSenha();
 void limpaTela();
 int main(void){
@@ -17,57 +17,66 @@ Em caso do usuário não acertar as 5 dezenas, o processo é repetido infinitame
 
     //Meu RA: 20054477-5
     //Meu RA Convertido: 02-00-54-47-75
+    //Esse programa foi feito em Linux
 
-    char senha[2];
-    int i=1,j=0;
-    int etapa=0;
-    bool acerto = false;
-    limpaTela();
+    ///VARIÁVEIS GERAIS
+    char senha[2]; //Senha que o usuário vai digitar
+    int i=1; // Variável contadora
+    int etapa=0; // Etapa da senha, cada etapa tem 2 caracteres. Total de etapas = 10;
+    bool acerto = false; // Caso o usuário erre ou acerte
+
+    limpaTela(); //Função de limpar a tela
     printf("------------------\n");
     puts("ABERTURA DO COFRE");
     puts("A abertura é formado\n por 5 etapas");
     printf("------------------\n");
-    
-     getchar();
+    printf("\nAperte qualquer [ENTER] para continuar...");
+     getchar(); // Captura uma tecla do usuário
     
    
-    while(true){
+    while(true){ //Loop infinito
         limpaTela();
-       
+        
         printf("Digite a %d dezena formada por 2 digitos: \n",i);
         scanf("%s",senha);
        
-        if(verificarSenha(senha,etapa)==true){
+        if(verificarSenha(senha,etapa)==true){ // Função que verifica a senha e sua respectiva etapa, retornando true ou false
           printf("ETAPA %d DESBLOQUEADA\n", i);
-          i++;
-          etapa+=2;
-          acerto=true;
+          i++;//contador
+          etapa+=2;//Etapa passa para próxima
+          acerto=true;//acerto do usuário recebe true
           getchar();
         }else{
           printf("SENHA ERRADA\n");
           printf("REINICIANDO A TRANCA...\n");
-          i=1;
-          etapa=0;
-          acerto=false;
+          i=1;//contador recebe 1
+          etapa=0; // Reseta a etapa
+          acerto=false;// acerto do usuário recebe false
           getchar();
         }
-        putchar('\n');
+        putchar('\n'); //quebra de Linha
         getchar();
-        if(etapa==strlen(RA))
-          break;         
+        if(etapa==strlen(RA))//Se Etapa == 10
+          break;//sai do loop infinito         
         
     }
+    limpaTela();
+    printf("PORTA ABERTA!\n");
+    printf("-------------\n");
     printf("COFRE ABERTO!\n");
+    printf("-------------\n");
+    printf("\n");
     return 0;
 }
+//Função que valida a senha
 bool verificarSenha(char senha[],int etapa){
-  int i;
+  int i;//contador
   int acha = 0;
-  for(i=0;i<strlen(RA)-etapa;i++){ 
-      if(senha[i]==RA[i+etapa]){ 
-        acha+=1;
+  for(i=0;i<strlen(RA)-etapa;i++){//Para 1=0; Equanto 1<10-0; i++ 
+      if(senha[i]==RA[i+etapa]){ //Se senha[0] == RA[0+0]
+        acha+=1;//Acha a letra
       }else{
-        break;
+        break;//sai do laço
       }
     }      
   if(acha==2)
@@ -77,5 +86,5 @@ bool verificarSenha(char senha[],int etapa){
 
 }
 void limpaTela(){
-  system("clear");
+  system("clear||cls");
 }
